@@ -1,0 +1,12 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: {{ .Values.issuer.name | default "letsencrypt-default" }}
+spec:
+  acme:
+    server: {{ .Values.issuer.acme_server }}
+    email: {{ .Values.issuer.contact_email }}
+    privateKeySecretRef:
+      name: {{ .Values.issuer.name | default "letsencrypt-default" }}
+    http01: {}

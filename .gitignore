@@ -1,0 +1,7 @@
+/values.yaml
+/persistent.yaml
+/tags
+/.terraform
+/terraform.tfvars
+/*.tfstate*
+*/charts/*

@@ -1,0 +1,5 @@
+Release name: '{{ .Release.Name }}'
+
+Issuer:
+  * ACME server: {{ .Values.issuer.acme_server }}
+  * E-mail: {{ .Values.issuer.contact_email }}

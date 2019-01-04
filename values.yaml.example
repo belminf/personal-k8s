@@ -1,0 +1,56 @@
+---
+external-dns:
+
+  # TODO: Decide on log level, default is info
+  #logLevel: debug
+
+
+  # TODO: credentials for Cloudflare
+  cloudflare:
+    #email: belminf@gmail.com
+    #apiKey: 1111ffff1111ffff
+
+
+mailer:
+
+  # TODO: Sendgrid's API key
+  #sendgridApiKey: SG.111111fffff
+
+
+prometheus:
+
+  alertmanager:
+    persistentVolume:
+
+      # TODO: existing pvclaim
+      #existingClaim: prometheus-alertmanager-pvclaim
+
+  server:
+    persistentVolume:
+
+      # TODO: existing pvclaim
+      #existingClaim: prometheus-server-pvclaim
+
+
+grafana:
+  persistence:
+
+    # TODO: existing pvclaim
+    #existingClaim: grafana-pvclaim
+
+  # TODO: admin user
+  #adminUser: root
+
+  # TODO: admin password
+  #adminPassword: goodfreakinpasswd
+
+
+issuer:
+
+  # TODO: choose ACME server
+  # Prod: https://acmev02.api.letsencrypt.org/directory
+  # Staging:  https://acme-staging-v02.api.letsencrypt.org/directory
+  #acme_server: https://acme-staging-v02.api.letsencrypt.org/directory
+
+  # TODO: provide contact email
+  #contact_email: belminf@gmail.com

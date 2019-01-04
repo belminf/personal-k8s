@@ -1,0 +1,38 @@
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}-default-deny
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}-ingress-to-pods
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: nginx-ingress
+            release: {{ .Release.Name }}
+            component: {{ index .Values "nginx-ingress" "controller" "name" }}
+       
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}-public-to-ingress
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-ingress
+      release: {{ .Release.Name }}
+      component: {{ index .Values "nginx-ingress" "controller" "name" }}
+  ingress:
+    - from: []

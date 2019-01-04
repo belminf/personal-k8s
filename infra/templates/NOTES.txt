@@ -1,0 +1,10 @@
+Release name: '{{ .Release.Name }}'
+
+Adminer:
+  * URL: http://{{ .Release.Name }}-adminer/
+
+Prometheus:
+  * URL: http://{{ .Release.Name }}-prometheus-server/graph
+
+Grafana:
+  * URL: http://{{ .Release.Name }}-grafana/login

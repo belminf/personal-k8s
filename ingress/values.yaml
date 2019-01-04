@@ -1,0 +1,6 @@
+nginx-ingress:
+  controller:
+    publishService:
+      enabled: true
+    scope:
+      enabled: true

@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mailer
+  labels:
+    app: {{ template "infra.name" . }}-mailer
+    chart: {{ template "infra.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "infra.name" . }}-mailer
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "infra.name" . }}-mailer
+        release: {{ .Release.Name }}
+        postgres_client: 'true'
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ printf "%s:%s" ( .Values.mailer.image.repository | default "namshi/smtp" ) ( .Values.mailer.image.tag | toString ) }}
+          imagePullPolicy: {{ .Values.mailer.image.pullPolicy | default "IfNotPresent" }}
+          tty: true
+          env:
+            - name: SMARTHOST_PASSWORD
+              value: {{ .Values.mailer.sendgridApiKey }}
+            - name: SMARTHOST_ADDRESS
+              value: smtp.sendgrid.net
+            - name: SMARTHOST_PORT
+              value: '2525'
+            - name: SMARTHOST_USER
+              value: apikey
+            - name: SMARTHOST_ALIASES
+              value: '*'
+            - name: RELAY_NETWORKS
+              value: ':10.0.0.0/8:100.64.0.0/10'
+          ports:
+            - name: smtp
+              containerPort: 25
+              protocol: TCP

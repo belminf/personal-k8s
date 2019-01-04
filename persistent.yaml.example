@@ -1,0 +1,97 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra
+  labels:
+    name: infra
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-prometheus-alertmanager
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 3G
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: pv-prometheus-alertmanager
+    fsType: ext4
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-alertmanager-pvclaim
+  namespace: infra
+spec:
+  storageClassName: ""
+  volumeName: pv-prometheus-alertmanager
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3G
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-prometheus-server
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 9G
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: pv-prometheus-server
+    fsType: ext4
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-server-pvclaim
+  namespace: infra
+spec:
+  storageClassName: ""
+  volumeName: pv-prometheus-server
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 9G
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-grafana
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10G
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: pv-grafana
+    fsType: ext4
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvclaim
+  namespace: infra
+spec:
+  storageClassName: ""
+  volumeName: pv-grafana
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10G

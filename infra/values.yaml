@@ -1,0 +1,59 @@
+---
+external-dns:
+  publishInternalServices: true
+  policy: sync
+  rbac:
+    create: true
+  provider: cloudflare
+
+
+mailer:
+  image:
+    tag: 'latest'
+
+
+adminer:
+  image:
+    tag: 'latest'
+
+
+prometheus:
+  networkPolicy:
+    enabled: true
+
+
+grafana:
+  plugins: digrich-bubblechart-panel,grafana-clock-panel
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://infra-prometheus-server
+          access: proxy
+          isDefault: true
+  persistence:
+    enabled: true
+
+
+fluentd-elasticsearch:
+  elasticsearch:
+    host: infra-elasticsearch-client
+
+
+kibana:
+  env:
+    ELASTICSEARCH_URL: http://infra-elasticsearch-client:9200
+
+
+elasticsearch:
+  client:
+    nodeSelector:
+      cloud.google.com/gke-nodepool: default-standard
+  master:
+    nodeSelector:
+      cloud.google.com/gke-nodepool: default-standard
+  data:
+    nodeSelector:
+      cloud.google.com/gke-nodepool: default-standard

@@ -1,0 +1,4 @@
+project             = "personal-k8s-1234567"
+cluster_name        = "my_cluster"
+zone                = "us-east1-b"
+standard_node_count = "2"
