@@ -1,0 +1,7 @@
+---
+releases:
+  - name: infra
+    namespace: infra
+    chart: infra
+    values:
+      - ../values.yaml

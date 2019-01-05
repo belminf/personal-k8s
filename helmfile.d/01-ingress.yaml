@@ -1,0 +1,7 @@
+---
+releases:
+  - name: ingress
+    namespace: default
+    chart: ingress
+    values:
+      - ../values.yaml
