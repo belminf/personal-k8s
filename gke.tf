@@ -2,6 +2,7 @@ variable "cluster_name" {}
 variable "project" {}
 variable "zone" {}
 variable "standard_node_count" {}
+variable "standard_node_type" {}
 
 provider "google" {
   project = "${var.project}"
@@ -97,7 +98,7 @@ resource "google_container_node_pool" "node_pool-standard" {
 
   node_config {
     disk_size_gb = 10
-    machine_type = "n1-highmem-2"
+    machine_type = "${var.standard_node_type}"
     oauth_scopes = [
       "https://www.googleapis.com/auth/compute",
       "https://www.googleapis.com/auth/devstorage.read_only",
