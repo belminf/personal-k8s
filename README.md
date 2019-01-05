@@ -62,10 +62,14 @@ You must then add those records to your CloudFlare domain.
 Create an API key that with restricted access to send e-mail. Record the key (should start with `SG`) as `mailer.sendgridApiKey` in `values.yaml`.
 
 ### Persistent disks:
+Manage these outside of Terraform since I do not want the lifecycle tied to cluster.
+
 ```bash
 gcloud compute disks create pv-prometheus-alertmanager --size 3GB
 gcloud compute disks create pv-prometheus-server --size 9GB
 gcloud compute disks create pv-grafana --size 10GB
+gcloud compute disks create pv-es-data-0 --size 15GB
+gcloud compute disks create pv-es-master-0 --size 3GB
 ```
 
 ## Setup Cluster
