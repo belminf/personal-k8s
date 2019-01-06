@@ -45,15 +45,3 @@ fluentd-elasticsearch:
 kibana:
   env:
     ELASTICSEARCH_URL: http://infra-elasticsearch-client:9200
-
-
-elasticsearch:
-  client:
-    nodeSelector:
-      cloud.google.com/gke-nodepool: default-standard
-  master:
-    nodeSelector:
-      cloud.google.com/gke-nodepool: default-standard
-  data:
-    nodeSelector:
-      cloud.google.com/gke-nodepool: default-standard
