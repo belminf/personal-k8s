@@ -68,7 +68,8 @@ Manage these outside of Terraform since I do not want the lifecycle tied to clus
 gcloud compute disks create pv-prometheus-alertmanager --size 3GB
 gcloud compute disks create pv-prometheus-server --size 9GB
 gcloud compute disks create pv-grafana --size 10GB
-gcloud compute disks create pv-es-data-0 --size 15GB
+gcloud compute disks create pv-es-data-0 --size 10GB
+gcloud compute disks create pv-es-data-1 --size 10GB
 gcloud compute disks create pv-es-master-0 --size 3GB
 ```
 
