@@ -1,5 +1,6 @@
 nginx-ingress:
   controller:
+    kind: DaemonSet
     publishService:
       enabled: true
     scope:
