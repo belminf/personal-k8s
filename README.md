@@ -71,6 +71,7 @@ gcloud compute disks create pv-grafana --size 10GB
 gcloud compute disks create pv-es-data-0 --size 10GB
 gcloud compute disks create pv-es-data-1 --size 10GB
 gcloud compute disks create pv-es-master-0 --size 3GB
+gcloud compute disks create pv-registry --size 3GB
 ```
 
 ## Setup Cluster

@@ -1,0 +1,8 @@
+---
+releases:
+  - name: registry
+    namespace: default
+    chart: stable/docker-registry
+    version: ~1.6.3
+    values:
+      - ../values/registry.yaml
